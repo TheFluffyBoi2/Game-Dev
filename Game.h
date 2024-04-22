@@ -9,7 +9,7 @@ private:
     string name, difficulty, rating;
 public:
     Game();
-    Game(unsigned int, unsigned int, unsigned int, unsigned int, string, string, string);
+    Game(unsigned int, unsigned int, string, string, string);
     ~Game();
     string getName() const;
     int getLength() const;
@@ -19,4 +19,5 @@ public:
     string getDifficulty() const;
     string getRating() const;
     virtual bool isSuccesful() const;
+//    unique_ptr<Game> makeGame();
 };

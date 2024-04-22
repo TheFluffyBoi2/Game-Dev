@@ -85,6 +85,12 @@ build CMakeFiles/GameDev.dir/storyGame.cpp.obj: CXX_COMPILER__GameDev_unscanned_
   OBJECT_DIR = CMakeFiles\GameDev.dir
   OBJECT_FILE_DIR = CMakeFiles\GameDev.dir
 
+build CMakeFiles/GameDev.dir/gameManager.cpp.obj: CXX_COMPILER__GameDev_unscanned_Debug C$:/Users/dumit/CLionProjects/GameDev/gameManager.cpp || cmake_object_order_depends_target_GameDev
+  DEP_FILE = CMakeFiles\GameDev.dir\gameManager.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\GameDev.dir
+  OBJECT_FILE_DIR = CMakeFiles\GameDev.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target GameDev
@@ -93,7 +99,7 @@ build CMakeFiles/GameDev.dir/storyGame.cpp.obj: CXX_COMPILER__GameDev_unscanned_
 #############################################
 # Link the executable GameDev.exe
 
-build GameDev.exe: CXX_EXECUTABLE_LINKER__GameDev_Debug CMakeFiles/GameDev.dir/main.cpp.obj CMakeFiles/GameDev.dir/Game.cpp.obj CMakeFiles/GameDev.dir/horrorGame.cpp.obj CMakeFiles/GameDev.dir/Simulator.cpp.obj CMakeFiles/GameDev.dir/Player.cpp.obj CMakeFiles/GameDev.dir/storyGame.cpp.obj
+build GameDev.exe: CXX_EXECUTABLE_LINKER__GameDev_Debug CMakeFiles/GameDev.dir/main.cpp.obj CMakeFiles/GameDev.dir/Game.cpp.obj CMakeFiles/GameDev.dir/horrorGame.cpp.obj CMakeFiles/GameDev.dir/Simulator.cpp.obj CMakeFiles/GameDev.dir/Player.cpp.obj CMakeFiles/GameDev.dir/storyGame.cpp.obj CMakeFiles/GameDev.dir/gameManager.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\GameDev.dir

@@ -5,14 +5,14 @@ using namespace std;
 
 storyGame::storyGame():
     storyQuality(0),
-    Game(0, 0, 0, 0, "None", "None", "None")
+    Game(0, 0, "None", "None", "None")
 {
     cout << "Story game created";
 }
 
-storyGame::storyGame(unsigned int story, unsigned int _length, unsigned int _score, unsigned int _price, unsigned int _sales, string _name, string _difficulty, string _rating):
+storyGame::storyGame(unsigned int story, unsigned int _length, unsigned int _price, string _name, string _difficulty, string _rating):
     storyQuality(story),
-    Game(_length, _score, _price, _sales, _name, _difficulty, _rating)
+    Game(_length, _price, _name, _difficulty, _rating)
 {
     cout << "Story game created";
 }

@@ -13,4 +13,6 @@ add_executable(GameDev main.cpp
         Player.cpp
         Player.h
         storyGame.cpp
-        storyGame.h)
+        storyGame.h
+        gameManager.cpp
+        gameManager.h)

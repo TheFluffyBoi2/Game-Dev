@@ -9,7 +9,7 @@ private:
     unsigned int simulationLevel;
 public:
     Simulator();
-    Simulator(unsigned int, unsigned int, unsigned int, unsigned int, unsigned int, string, string, string);
+    Simulator(unsigned int, unsigned int, unsigned int, string, string, string);
     ~Simulator();
     bool isSuccesful() const;
     int getSimulationLevel() const;

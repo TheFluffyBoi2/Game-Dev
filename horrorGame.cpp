@@ -5,15 +5,15 @@ using namespace std;
 #include "horrorGame.h"
 
 horrorGame::horrorGame():
-    Game(0, 0, 0, 0, "None", "None", "None"),
+    Game(0, 0, "None", "None", "None"),
     scareFactor(0)
 {
     cout << "Horror game created!";
 }
 
-horrorGame::horrorGame(unsigned int _scare, unsigned int _length, unsigned int _score, unsigned int _price, unsigned int _sales, string _name, string _difficulty, string _rating):
+horrorGame::horrorGame(unsigned int _scare, unsigned int _length, unsigned int _price, string _name, string _difficulty, string _rating):
     scareFactor(_scare),
-    Game(_length, _score, _price, _sales, _name, _difficulty, _rating)
+    Game(_length, _price, _name, _difficulty, _rating)
 {
     cout << "Horror game created!";
 }

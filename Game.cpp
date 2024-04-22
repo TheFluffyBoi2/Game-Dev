@@ -1,5 +1,9 @@
 #include <iostream>
+#include <memory>
 #include "Game.h"
+#include "horrorGame.h"
+#include "Simulator.h"
+#include "storyGame.h"
 
 using namespace std;
 
@@ -15,13 +19,11 @@ Game::Game():
     cout << "Game created!";
 }
 
-Game::Game(unsigned int _length, unsigned int _score, unsigned int _price, unsigned int _sales, string _name, string _difficulty, string _rating):
+Game::Game(unsigned int _length, unsigned int _price, string _name, string _difficulty, string _rating):
     length(_length),
-    score(_score),
     price(_price),
     name(_name),
     difficulty(_difficulty),
-    sales(_sales),
     rating(_rating)
 {
     cout << "Game created!";
@@ -62,3 +64,22 @@ bool Game::isSuccesful() const {
 int Game::getSales() const {
     return sales;
 }
+
+//unique_ptr<Game> Game::makeGame(){
+//    int choice;
+//    cout << "What kind of game would you like to create? : ";
+//    cout << "Horror game (1)";
+//    cout << "Simulator (2)";
+//    cout << "Story Game (3)";
+//    cin >> choice;
+//
+//    if (choice == 1)
+//    {
+//        unique_ptr<Game> game = make_unique<Game>(0, 0, 0, 0, "a", "a", "a");
+//        cout << game->isSuccesful();
+//        game = make_unique<horrorGame>();
+//        cout << game->isSuccesful();
+//        return game;
+//    }
+//
+//}
