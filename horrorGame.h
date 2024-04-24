@@ -5,13 +5,13 @@
 using namespace std;
 
 class horrorGame : public Game{
-private:
+protected:
     unsigned int scareFactor;
 public:
     horrorGame();
-    horrorGame(unsigned int, unsigned int, unsigned int, string, string, string);
+    horrorGame(unsigned int, unsigned int, unsigned int, unsigned int, string, string);
     ~horrorGame();
-    bool isSuccesful() const;
+    bool isSuccesful();
     int getScareFactor() const;
     void setScareFactor(unsigned int);
 };

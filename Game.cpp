@@ -7,30 +7,38 @@
 
 using namespace std;
 
+unsigned int Game::constanta = 0;
+
 Game::Game():
     length(0),
     score(0),
     price(0),
     sales(0),
+    rating(0),
     name("None"),
-    difficulty("None"),
-    rating("None")
+    difficulty("None")
 {
-    cout << "Game created!";
+    constanta++;
+    id = constanta;
+//    cout << "Game created!";
 }
 
-Game::Game(unsigned int _length, unsigned int _price, string _name, string _difficulty, string _rating):
+Game::Game(unsigned int _length, unsigned int _price, unsigned int _rating, string _name, string _difficulty):
     length(_length),
     price(_price),
     name(_name),
     difficulty(_difficulty),
-    rating(_rating)
+    rating(_rating),
+    score(0),
+    sales(0)
 {
-    cout << "Game created!";
+    constanta++;
+    id = constanta;
+//    cout << "Game created!";
 }
 
 Game::~Game(){
-    cout << "Destructor";
+//    cout << "Destructor";
 }
 
 string Game::getName() const {
@@ -53,11 +61,11 @@ string Game::getDifficulty() const {
     return difficulty;
 }
 
-string Game::getRating() const {
+int Game::getRating() const {
     return rating;
 }
 
-bool Game::isSuccesful() const {
+bool Game::isSuccesful() {
     return false;
 }
 
@@ -65,21 +73,20 @@ int Game::getSales() const {
     return sales;
 }
 
-//unique_ptr<Game> Game::makeGame(){
-//    int choice;
-//    cout << "What kind of game would you like to create? : ";
-//    cout << "Horror game (1)";
-//    cout << "Simulator (2)";
-//    cout << "Story Game (3)";
-//    cin >> choice;
-//
-//    if (choice == 1)
-//    {
-//        unique_ptr<Game> game = make_unique<Game>(0, 0, 0, 0, "a", "a", "a");
-//        cout << game->isSuccesful();
-//        game = make_unique<horrorGame>();
-//        cout << game->isSuccesful();
-//        return game;
-//    }
-//
-//}
+void Game::setScore(unsigned int _score) {
+    score = _score;
+}
+
+void Game::setSales(unsigned int _sales) {
+    sales = _sales;
+}
+
+int Game::getId() const {
+    return id;
+}
+
+ostream& operator<<(ostream& os, const Game& game)
+{
+    os << "The game with the id " << game.getId() << " called " << game.getName() << " with the score of " << game.getScore() << " made a total amount of " << game.getSales() << "$";
+    return os;
+}

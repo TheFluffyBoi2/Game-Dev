@@ -5,13 +5,13 @@
 using namespace std;
 
 class Simulator : public Game{
-private:
+protected:
     unsigned int simulationLevel;
 public:
     Simulator();
-    Simulator(unsigned int, unsigned int, unsigned int, string, string, string);
+    Simulator(unsigned int, unsigned int, unsigned int, unsigned int, string, string);
     ~Simulator();
-    bool isSuccesful() const;
+    bool isSuccesful();
     int getSimulationLevel() const;
     void setSimulationLevel(unsigned int);
 };

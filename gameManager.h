@@ -1,10 +1,12 @@
 #include <iostream>
+#pragma once
+#include <memory>
 
 using namespace std;
 
 class gameManager {
 private:
-    void createGame();
+    static void createGame(unique_ptr <Player>& player);
 public:
     void start();
 };

@@ -9,9 +9,9 @@ private:
     unsigned int storyQuality;
 public:
     storyGame();
-    storyGame(unsigned int, unsigned int, unsigned int, string, string, string);
+    storyGame(unsigned int, unsigned int, unsigned int, unsigned int, string, string);
     ~storyGame();
     int getStoryQuality() const;
     void setStoryQuality(unsigned int story);
-    bool isSuccesful() const;
+    bool isSuccesful();
 };

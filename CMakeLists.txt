@@ -15,4 +15,6 @@ add_executable(GameDev main.cpp
         storyGame.cpp
         storyGame.h
         gameManager.cpp
-        gameManager.h)
+        gameManager.h
+        Achievements.cpp
+        Achievements.h)
