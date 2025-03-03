@@ -17,4 +17,8 @@ add_executable(GameDev main.cpp
         gameManager.cpp
         gameManager.h
         Achievements.cpp
-        Achievements.h)
+        Achievements.h
+        gameCreator.cpp
+        gameCreator.h
+        Placeholder.cpp
+        Placeholder.h)

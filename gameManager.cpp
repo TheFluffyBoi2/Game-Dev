@@ -4,6 +4,8 @@
 #include "horrorGame.h"
 #include "Simulator.h"
 #include "storyGame.h"
+#include "gameCreator.h"
+#include "Placeholder.h"
 #include <memory>
 #include <vector>
 #include <string>
@@ -11,6 +13,32 @@
 #include <thread>
 
 using namespace std;
+
+gameManager gameManager::instance;
+
+gameManager& gameManager::Get() {
+    return instance;
+}
+
+template <class T>
+bool better(shared_ptr<Game> &g, T c) {
+    if (g->getScore() > c)
+        return true;
+    else
+        return false;
+}
+
+template <>
+bool better<shared_ptr<Game>&>(shared_ptr<Game> &g1, shared_ptr<Game> &g2) {
+    if (g1 > g2)
+        return true;
+    else
+        return false;
+}
+
+template<class T> bool better() {
+    return true;
+}
 
 void gameManager::start() {
     unique_ptr<Player> player = make_unique<Player>(500);
@@ -35,6 +63,8 @@ void gameManager::start() {
         cout << "Show my achievements (3)\n";
         cout << "Show all achievements (4)\n";
         cout << "Show all games (5)\n";
+        cout << "Compare a game (6)\n";
+        cout << "Profit calculator (7)\n";
         cout << "Current balance: " << player->getMoney() << "$ \n";
         cout << "Choice: ";
         cin >> choice;
@@ -54,18 +84,18 @@ void gameManager::start() {
             uniform_int_distribution<int> dist2(0,5);
             random_device random3;
             mt19937 mt3(random3());
-            uniform_int_distribution<int> dist3(1,6);
+            uniform_int_distribution<int> dist3(0,5);
 
             if ((*it)->isSuccesful())
             {
                 player->setGoodGames();
                 cout << "Reviews are in... : \n";
-                std::chrono::seconds duration(3);
-                std::this_thread::sleep_for(duration);
+//                std::chrono::seconds duration(3);
+//                std::this_thread::sleep_for(duration);
                 cout << reviews_mari[dist(mt)] << " " << note_mari[dist(mt)] << "\n" << std::flush;
-                std::this_thread::sleep_for(duration);
+//                std::this_thread::sleep_for(duration);
                 cout << reviews_mari[dist(mt2)] << " " << note_mari[dist(mt2)] <<"\n" << std::flush;
-                std::this_thread::sleep_for(duration);
+//                std::this_thread::sleep_for(duration);
                 cout << reviews_mari[dist(mt3)] << " " << note_mari[dist(mt3)] << "\n" << std::flush;
                 unsigned int finalScore = (note_mari[dist(mt)] + note_mari[dist(mt2)] + note_mari[dist(mt3)]) / 3;
                 cout << "Final score: " << finalScore << "\n";
@@ -73,6 +103,9 @@ void gameManager::start() {
                 player->setMoney(player->getMoney() + finalScore * (*it)->getPrice() * 100);
                 (*it)->setScore(finalScore);
                 (*it)->setSales(finalScore * (*it)->getPrice() * 100);
+//                cout << better<int>(*(it), 5) << "____________________________________";
+//                if (player->getVector().size() > 1)
+//                    cout << better<shared_ptr<Game>&>(*(it), *(it-1));
                 if (player->getGoodGames() == 1)
                     player->getClassAch().achievement3();
                 if (finalScore * (*it)->getPrice() * 100 >= 11000)
@@ -83,12 +116,12 @@ void gameManager::start() {
             {
                 player->setBadGames();
                 cout << "Reviews are in... : \n";
-                std::chrono::seconds duration(3);
-                std::this_thread::sleep_for(duration);
+//                std::chrono::seconds duration(3);
+//                std::this_thread::sleep_for(duration);
                 cout << reviews_mici[dist(mt)] << " " << note_mici[dist(mt)] << "\n" << std::flush;
-                std::this_thread::sleep_for(duration);
+//                std::this_thread::sleep_for(duration);
                 cout << reviews_mici[dist(mt2)] << " " << note_mici[dist(mt2)] <<"\n" << std::flush;
-                std::this_thread::sleep_for(duration);
+//                std::this_thread::sleep_for(duration);
                 cout << reviews_mici[dist(mt3)] << " " << note_mici[dist(mt3)] << "\n" << std::flush;
                 unsigned int finalScore = (note_mici[dist(mt)] + note_mici[dist(mt2)] + note_mici[dist(mt3)]) / 3;
                 cout << "Final score: " << finalScore << "\n";
@@ -96,6 +129,9 @@ void gameManager::start() {
                 player->setMoney(player->getMoney() + finalScore * (*it)->getPrice());
                 (*it)->setScore(finalScore);
                 (*it)->setSales(finalScore * (*it)->getPrice());
+//                cout << better(*(it), 5) << "____________________________________";
+//                if (player->getVector().size() > 1)
+//                    cout << better<shared_ptr<Game>&>(*(it), *(it-1));
                 if (player->getBadGames() == 1)
                     player->getClassAch().achievement4();
             }
@@ -122,6 +158,143 @@ void gameManager::start() {
             for (const auto &it : player->getVector())
                 cout << (*it) << "\n";
         }
+
+        if (choice == 6)
+        {
+            cout << "Which game do you want to compare? (0- " << player->getVector().size()-1 << "): ";
+            int game1;
+            cin >> game1;
+            cout << "Do you want to compare it with a game (1)\n";
+            cout << "Do you want to compare it with a number (2)\n";
+            int choice;
+            cin >> choice;
+            if (choice == 1) {
+                cout << "Which game do you want to compare? (0- " << player->getVector().size()-1 << "): ";
+                int game2;
+                cin >> game2;
+                if (better<shared_ptr<Game>&>(player->getVector()[game1], player->getVector()[game2]))
+                    cout << "The first game is better\n";
+                else
+                    cout << "The second game is better\n";
+            }
+            if (choice == 2) {
+                cout << "What type of number?\n";
+                cout << "Int (1)\n";
+                cout << "Double (2)\n";
+                cout << "Float (3)\n";
+                int numberType;
+                cin >> numberType;
+                if (numberType == 1)
+                {
+                    cout << "Number: ";
+                    int number;
+                    cin >> number;
+                    if (better<int>(player->getVector()[game1], number))
+                        cout << "The game is better\n";
+                    else
+                        cout << "The game is worse\n";
+                }
+                if (numberType == 2)
+                {
+                    cout << "Number: ";
+                    double number;
+                    cin >> number;
+                    if (better<double>(player->getVector()[game1], number))
+                        cout << "The game is better\n";
+                    else
+                        cout << "The game is worse\n";
+                }
+                if (numberType == 3)
+                {
+                    cout << "Number: ";
+                    float number;
+                    cin >> number;
+                    if (better<float>(player->getVector()[game1], number))
+                        cout << "The game is better\n";
+                    else
+                        cout << "The game is worse\n";
+                }
+            }
+        }
+
+        if (choice == 7)
+        {
+            cout << "What type of number?\n";
+            cout << "Int (1)\n";
+            cout << "Double (2)\n";
+            cout << "Float (3)\n";
+            int numberType;
+            cin >> numberType;
+            if (numberType == 1)
+            {
+                cout << "Starting sum: ";
+                int startingSum;
+                cin >> startingSum;
+                int cost;
+                cout << "Costul jocului: ";
+                cin >> cost;
+                cout << endl;
+                int n1, n2, n3;
+                cout << "First grade: ";
+                cin >> n1;
+                cout << endl;
+                cout << "Second grade: ";
+                cin >> n2;
+                cout << endl;
+                cout << "Third grade: ";
+                cin >> n3;
+                cout << endl;
+                vector<int> v = {n1,n2,n3};
+                winnings<int> w(startingSum, cost, v);
+                cout << "Final sum: " << w.calculateProfit() << endl;
+            }
+            if (numberType == 2)
+            {
+                cout << "Starting sum: ";
+                double startingSum;
+                cin >> startingSum;
+                double cost;
+                cout << "Costul jocului: ";
+                cin >> cost;
+                cout << endl;
+                double n1, n2, n3;
+                cout << "First grade: ";
+                cin >> n1;
+                cout << endl;
+                cout << "Second grade: ";
+                cin >> n2;
+                cout << endl;
+                cout << "Third grade: ";
+                cin >> n3;
+                cout << endl;
+                vector<double> v = {n1,n2,n3};
+                winnings<double> w(startingSum, cost, v);
+                cout << "Final sum: " << w.calculateProfit() << endl;
+            }
+            if (numberType == 3)
+            {
+                cout << "Starting sum: ";
+                float startingSum;
+                cin >> startingSum;
+                float cost;
+                cout << "Costul jocului: ";
+                cin >> cost;
+                cout << endl;
+                float n1, n2, n3;
+                cout << "First grade: ";
+                cin >> n1;
+                cout << endl;
+                cout << "Second grade: ";
+                cin >> n2;
+                cout << endl;
+                cout << "Third grade: ";
+                cin >> n3;
+                cout << endl;
+                vector<float> v = {n1,n2,n3};
+                winnings<float> w(startingSum, cost, v);
+                cout << "Final sum: " << w.calculateProfit() << endl;
+            }
+        }
     }
 }
 
@@ -135,123 +308,7 @@ void gameManager::createGame(unique_ptr<Player>& player) {
     cout << "Story Game (3):\n";
     cout << "Choice: ";
     cin >> choice;
-
-    if (choice == 1){
-        cout << "Horror game chosen\n";
-        cout << "How would you like to name the game?:\n";
-        cin.ignore(10000, '\n');
-        string name;
-        getline(cin, name);
-        cout << "Chose how long will your game be (1-9 hrs):\n";
-        unsigned int length;
-        cin >> length;
-        gameCap -= length;
-        cout << "Chose how scary do you want to make your game (1-" << gameCap << "):\n";
-        int scareFactor;
-        cin >> scareFactor;
-        if (scareFactor > gameCap)
-        {
-            cout << "Over budget, auto 1\n";
-            scareFactor = 1;
-        }
-        gameCap -= scareFactor;
-        cout << "Chose the price (1-10$):\n";
-        cout << "$";
-        unsigned int price;
-        cin >> price;
-        if (price > 10)
-        {
-            cout << "Over price, auto 1\n";
-            price = 1;
-        }
-        cout << "Chose difficulty (Easy, Medium, Hard):\n";
-        string difficulty;
-        cin >> difficulty;
-        cout << "Chose rating (+3 +7 +12 +16 +18):\n";
-        cout << "+";
-        unsigned int rating;
-        cin >> rating;
-        shared_ptr<horrorGame> horror = make_shared<horrorGame>(scareFactor, length, price, rating, name, difficulty);
-        game = dynamic_pointer_cast<Game>(horror);
-        player->getVector().push_back(game);
-
-    }
-    if (choice == 2){
-        cout << "Simulator chosen\n";
-        cout << "How would you like to name the game?:\n";
-        cin.ignore(10000, '\n');
-        string name;
-        getline(cin, name);
-        cout << "Chose how long will your game be (1-9 hrs):\n";
-        unsigned int length;
-        cin >> length;
-        gameCap -= length;
-        cout << "Chose how realistic do you want to make your game (1-" << gameCap << "):\n";
-        int simulation;
-        cin >> simulation;
-        if (simulation > gameCap)
-        {
-            cout << "Over budget, auto 1\n";
-            simulation = 1;
-        }
-        gameCap -= simulation;
-        cout << "Chose the price (1-10$):\n";
-        cout << "$";
-        unsigned int price;
-        cin >> price;
-        if (price > 10)
-        {
-            cout << "Over price, auto 1$\n";
-            price = 1;
-        }
-        cout << "Chose difficulty (Easy, Medium, Hard):\n";
-        string difficulty;
-        cin >> difficulty;
-        cout << "Chose rating (+3 +7 +12 +16 +18):\n";
-        cout << "+";
-        unsigned int rating;
-        cin >> rating;
-        shared_ptr<Simulator> simulator = make_shared<Simulator>(simulation, length, price, rating, name, difficulty);
-        game = dynamic_pointer_cast<Game>(simulator);
-        player->getVector().push_back(game);
-    }
-    if (choice == 3){
-        cout << "Story game chosen\n";
-        cout << "How would you like to name the game?:\n";
-        cin.ignore(10000, '\n');
-        string name;
-        getline(cin, name);
-        cout << "Chose how long will your game be (1-9 hrs):\n";
-        unsigned int length;
-        cin >> length;
-        gameCap -= length;
-        cout << "Chose how good do you want to make your game's story (1-" << gameCap << "):\n";
-        int story;
-        cin >> story;
-        if (story > gameCap)
-        {
-            cout << "Over budget, auto 1\n";
-            story = 1;
-        }
-        gameCap -= story;
-        cout << "Chose the price (1-10$):\n";
-        cout << "$";
-        unsigned int price;
-        cin >> price;
-        if (price > 10)
-        {
-            cout << "Over price, auto 1\n";
-            price = 1;
-        }
-        cout << "Chose difficulty (Easy, Medium, Hard):\n";
-        string difficulty;
-        cin >> difficulty;
-        cout << "Chose rating (+3 +7 +12 +16 +18):\n";
-        cout << "+";
-        unsigned int rating;
-        cin >> rating;
-        shared_ptr<storyGame> _story = make_shared<storyGame>(story, length, price, rating, name, difficulty);
-        game = dynamic_pointer_cast<Game>(_story);
-        player->getVector().push_back(game);
-    }
+    game = gameCreator::createGame(choice);
+    player->getVector().push_back(game);
+    //
 }

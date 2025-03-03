@@ -65,10 +65,6 @@ int Game::getRating() const {
     return rating;
 }
 
-bool Game::isSuccesful() {
-    return false;
-}
-
 int Game::getSales() const {
     return sales;
 }
@@ -87,6 +83,19 @@ int Game::getId() const {
 
 ostream& operator<<(ostream& os, const Game& game)
 {
-    os << "The game with the id " << game.getId() << " called " << game.getName() << " with the score of " << game.getScore() << " made a total amount of " << game.getSales() << "$";
+    os << "The game with the id " << game.id << " called " << game.name << " with the score of " << game.score << " made a total amount of " << game.sales << "$";
     return os;
 }
+
+Game& Game::operator=(const Game& game)
+{
+    length = game.length;
+    price = game.price;
+    name = game.name;
+    difficulty = game.difficulty;
+    rating = game.rating;
+    score = game.score;
+    sales = game.sales;
+    return *this;
+}
+

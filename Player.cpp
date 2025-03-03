@@ -24,7 +24,7 @@ Player::~Player()
 //    cout << "Deconstructor";
 }
 
-int Player::getMoney() const {
+double Player::getMoney() const {
     return money;
 }
 

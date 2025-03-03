@@ -44,7 +44,7 @@ bool Simulator::isSuccesful() {
         score++;
     else
         score--;
-    if (difficulty == "Medium" or difficulty == "Hard")
+    if (difficulty == "Medium" || difficulty == "Hard")
         score++;
     else
         score--;

@@ -1,3 +1,0 @@
-C:/Users/dumit/CLionProjects/GameDev/cmake-build-debug/CMakeFiles/GameDev.dir
-C:/Users/dumit/CLionProjects/GameDev/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/dumit/CLionProjects/GameDev/cmake-build-debug/CMakeFiles/rebuild_cache.dir

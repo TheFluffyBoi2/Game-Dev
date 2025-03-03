@@ -1,4 +1,6 @@
 #include <iostream>
+#include <vector>
+#include <memory>
 #pragma once
 
 using namespace std;
@@ -23,6 +25,8 @@ public:
     void setScore(unsigned int);
     void setSales(unsigned int);
     int getId() const;
-    virtual bool isSuccesful();
+    virtual bool isSuccesful() = 0;
     friend ostream& operator<<(ostream& os, const Game& game);
+    bool operator>(shared_ptr<Game> &g) {return this->getScore() > g->getScore();};
+    Game& operator=(const Game&);
 };
