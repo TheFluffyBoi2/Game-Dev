@@ -51,4 +51,7 @@ It is inspired by the acclaimed game with a similar title [Game Dev Simulator](h
 - Earn Achievements
 
 ## Classes
-- GameManager: The core of the game, GameManager is a singleton class used for the main game loop.  
+- GameManager: The core of the game, GameManager is a singleton class used for the main game loop.
+- Game: An abstract class that outlines some basic caracteristics that every game should have.
+- storyGame, Simulator, horrorGame: All 3 classes inherits form the class Game and add their unique spin on what a game of their respective category should have.
+- Player: The Player class holds data about the games created by the player along with the remaining money.
