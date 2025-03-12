@@ -1,5 +1,6 @@
 #include <iostream>
-#include "Simulator.h"
+#include "../headers/Simulator.h"
+#include "../headers/Game.h"
 
 using namespace std;
 

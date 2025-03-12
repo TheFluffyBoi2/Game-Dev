@@ -1,9 +1,9 @@
 #include <iostream>
 #include <memory>
-#include "Game.h"
-#include "horrorGame.h"
-#include "Simulator.h"
-#include "storyGame.h"
+#include "../headers/Game.h"
+#include "../headers/horrorGame.h"
+#include "../headers/Simulator.h"
+#include "../headers/storyGame.h"
 
 using namespace std;
 

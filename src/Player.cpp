@@ -1,5 +1,7 @@
 #include <iostream>
-#include "Player.h"
+#include "../headers/Player.h"
+#include "../headers/Game.h"
+#include "../headers/Achievements.h"
 
 using namespace std;
 

@@ -3,22 +3,25 @@ project(GameDev)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(GameDev main.cpp
-        Game.cpp
-        Game.h
-        horrorGame.cpp
-        horrorGame.h
-        Simulator.cpp
-        Simulator.h
-        Player.cpp
-        Player.h
-        storyGame.cpp
-        storyGame.h
-        gameManager.cpp
-        gameManager.h
-        Achievements.cpp
-        Achievements.h
-        gameCreator.cpp
-        gameCreator.h
-        Placeholder.cpp
-        Placeholder.h)
+set(CMAKE_EXE_LINKER_FLAGS "-static")
+
+add_executable(GameDev
+        main.cpp
+        headers/gameCreator.h
+        src/gameCreator.cpp
+        headers/horrorGame.h
+        src/horrorGame.cpp
+        headers/storyGame.h
+        src/storyGame.cpp
+        headers/Simulator.h
+        src/Simulator.cpp
+        headers/Achievements.h
+        src/Achievements.cpp
+        headers/Game.h
+        src/Game.cpp
+        headers/gameManager.h
+        src/gameManager.cpp
+        headers/Player.h
+        src/Player.cpp
+        headers/Profit.h
+)

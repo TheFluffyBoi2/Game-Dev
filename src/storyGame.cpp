@@ -1,6 +1,7 @@
 #include <iostream>
 #include <stdlib.h>
-#include "storyGame.h"
+#include "../headers/storyGame.h"
+#include "../headers/Game.h"
 
 using namespace std;
 

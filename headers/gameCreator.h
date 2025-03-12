@@ -1,6 +1,8 @@
+#pragma once
 #include <iostream>
-#include "Game.h"
 #include <memory>
+#include "Game.h"
+
 using namespace std;
 
 class gameCreator {

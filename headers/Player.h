@@ -1,12 +1,9 @@
+#pragma once
 #include <iostream>
 #include <vector>
-#include "Game.h"
-#include "horrorGame.h"
-#include "Simulator.h"
-#include "storyGame.h"
-#include "Achievements.h"
 #include <memory>
-#pragma once
+#include "Game.h"
+#include "Achievements.h"
 
 using namespace std;
 

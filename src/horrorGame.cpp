@@ -1,8 +1,8 @@
 #include <iostream>
+#include "../headers/Game.h"
+#include "../headers/horrorGame.h"
 
 using namespace std;
-
-#include "horrorGame.h"
 
 horrorGame::horrorGame():
     Game(0, 0, 0, "None", "None"),

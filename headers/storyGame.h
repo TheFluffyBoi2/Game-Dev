@@ -1,6 +1,6 @@
+#pragma once
 #include <iostream>
 #include "Game.h"
-#pragma once
 
 using namespace std;
 
